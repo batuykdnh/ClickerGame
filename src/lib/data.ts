@@ -12,15 +12,15 @@ export async function getClickCount() {
 
 export async function increaseClickCount() {
   try {
-    const data = await prisma.clickedObject.updateMany({
+    await prisma.clickedObject.updateMany({
       data: {
         count: {
           increment: 1,
         },
       },
     });
-  } catch (e) {
-    return "Error!";
+  } catch (e: unknown) {
+    return { error: e?.toString() };
   }
 
   return "Success!";

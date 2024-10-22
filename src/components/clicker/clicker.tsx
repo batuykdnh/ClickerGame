@@ -1,16 +1,13 @@
 "use client";
 
 import { FormEvent, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import { PiAcornFill } from "react-icons/pi";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import clsx from "clsx";
 
 export function ClickForm() {
-  const router = useRouter();
   const [count, setCount] = useState(0);
   const [active, setActive] = useState(false);
-  const queryClient = useQueryClient();
 
   const countDb = useQuery({
     queryKey: ["click-count"],
@@ -52,13 +49,6 @@ export function ClickForm() {
 }
 
 function CountDiv({ count }: { count: number }) {
-  const [active, setActive] = useState(false);
-  useEffect(() => {
-    setActive(true);
-
-    return () => {};
-  }, []);
-
   return (
     <div
       className="bg-blue-400 rounded-lg p-5 flex items-center
